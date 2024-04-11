@@ -23,7 +23,7 @@ async function login(req, res, next) {
     };
 
     const token = jwt.sign(userForToken, config.SECRET, {
-      expiresIn: "1day",
+      expiresIn: "5h",
     });
 
     return res
