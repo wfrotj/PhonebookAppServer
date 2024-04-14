@@ -31,9 +31,10 @@ personSchema.set("toJSON", {
     returnedObject.id = returnedObject._id;
     delete returnedObject._id;
     delete returnedObject.__v;
-    if (returnedObject.birthday) {
-      returnedObject.birthday =
-        returnedObject.birthday.toLocaleDateString("en-US");
+    if (returnedObject.birthday instanceof Date) {
+      returnedObject.birthday = returnedObject.birthday
+        .toISOString()
+        .split("T")[0];
     }
   },
 });
