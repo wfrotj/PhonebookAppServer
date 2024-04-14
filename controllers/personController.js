@@ -49,6 +49,8 @@ async function createPerson(req, res, next) {
       name,
       number,
       address,
+      birthday,
+      age,
       user: user._id,
       photoInfo,
     });
@@ -83,6 +85,8 @@ async function updatePerson(req, res, next) {
   const person = {
     name,
     number,
+    birthday,
+    age,
     photoInfo: req.file
       ? { url: photoUrl, filename: snapshot.ref.fullPath }
       : previousPerson.photoInfo,

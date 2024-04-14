@@ -12,7 +12,12 @@ const personSchema = new mongoose.Schema({
   number1: {
     type: String,
   },
-  number2: { type: String },
+  birthday: {
+    type: String,
+  },
+  age: {
+    number,
+  },
   address: {
     type: String,
     required: true,
