@@ -13,7 +13,7 @@ const personSchema = new mongoose.Schema({
     type: Date,
   },
   age: {
-    type: String,
+    type: Number,
   },
   address: {
     type: String,
@@ -31,6 +31,10 @@ personSchema.set("toJSON", {
     returnedObject.id = returnedObject._id;
     delete returnedObject._id;
     delete returnedObject.__v;
+    if (returnedObject.birthday) {
+      returnedObject.birthday =
+        returnedObject.birthday.toLocaleDateString("en-US");
+    }
   },
 });
 
