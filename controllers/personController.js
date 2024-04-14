@@ -32,7 +32,7 @@ async function getPerson(req, res, next) {
 
 async function createPerson(req, res, next) {
   try {
-    const { name, number, address } = req.body;
+    const { name, number, address, birthday, age } = req.body;
     const decodedToken = userService.verifyToken(req, config.SECRET);
     const user = await userService.getUser(decodedToken.id);
     const photoInfo = await uploadFile(req.file);
@@ -65,7 +65,7 @@ async function createPerson(req, res, next) {
 
 async function updatePerson(req, res, next) {
   const id = req.params.id;
-  const { name, number } = req.body;
+  const { name, number, birthday, age } = req.body;
   const previousPerson = await Person.findById(id);
   let snapshot;
   let photoUrl = "";
@@ -87,6 +87,7 @@ async function updatePerson(req, res, next) {
     number,
     birthday,
     age,
+
     photoInfo: req.file
       ? { url: photoUrl, filename: snapshot.ref.fullPath }
       : previousPerson.photoInfo,
